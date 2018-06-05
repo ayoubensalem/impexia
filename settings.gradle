@@ -20,10 +20,13 @@ include 'impexia-imp'
 include 'impexia-exp'
 include 'impexia-csv'
 include 'impexia-sql'
+include 'impexia-me'
+
+project(':impexia-me').projectDir = new File('./hybris/bin/custom/impexia-me/')
 
 rootProject.name = 'impexia'
 
 
-rootProject.children.each {project ->
+rootProject.children.each { project ->
 	project.buildFileName = "${project.name}.gradle"
 }

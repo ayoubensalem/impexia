@@ -9,7 +9,7 @@
 
 // 3rd party plugin repositories can be configured in settings.gradle
 plugins {
-	id "org.sonarqube" version "2.5"
+	id "org.sonarqube" version "2.6"
 
 }
  
@@ -20,16 +20,12 @@ plugins {
 allprojects {
     apply plugin: 'java'
     apply plugin: 'maven'
-	
 	apply plugin: "jacoco"
 	
 	
 	group = 'org.anasoid.impexia'
 	sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-   
-   
-    
 	
    repositories {
         jcenter()
@@ -40,7 +36,6 @@ allprojects {
         toolVersion = '0.8.0'
     }
 
-	
 	ext.junitVersion= '4.12'
 	
 	ext.gradleScriptDir = "${rootProject.projectDir}/gradle"
@@ -95,10 +90,20 @@ ext {
 	linkHomepage = 'https://github.com/anasoid/impexia'
 	linkIssue = 'https://github.com/anasoid/impexia/issues'
 	linkScmUrl = 'https://github.com/anasoid/impexia'
-
-
-
 }
+
+
+// task cleanAll() {
+//     subprojects.each {
+//         it.afterEvaluate {
+//             def cleanTask = it.tasks.findByName('clean')
+//             if (cleanTask) {
+//                 dependsOn(cleanTask)
+//             }
+//         }
+//     }
+// }
+
 
 task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
     dependsOn = subprojects.test
@@ -116,9 +121,6 @@ task jacocoRootReport(type: org.gradle.testing.jacoco.tasks.JacocoReport) {
 
 // In this section you declare the dependencies for your production and test code
 project.dependencies {
-
-
-  
     testImplementation("junit:junit:$junitVersion")
 }
 
